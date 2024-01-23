@@ -46,6 +46,11 @@ Route::middleware('auth')->group(function () {
 
         return redirect()->back();
     })->name('locale.setting');
+
+    Route::get('/theme/{theme}', function ($theme) {
+        session()->put('theme', $theme);
+        return redirect()->back();
+    })->name('bg-theme');
 });
 
 Route::controller(UserController::class)->group(function () {

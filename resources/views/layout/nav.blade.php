@@ -21,17 +21,39 @@ data-bs-theme="dark">
                     <a class="nav-link {{ request()->routeis('profile') ? 'active' : '' }}" href="{{ route('profile') }}">{{ Auth::user()->name }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  href="{{ route('locale.setting','en') }}">ES</a> 
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="{{ route('locale.setting','pt-BR') }}">PT</i></a> 
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownButton" data-bs-toggle="dropdown" >
+                            ES/PT
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownButton">
+                            <li><a href="{{ route('locale.setting','pt-BR') }}" class="dropdown-item"> PT</a></li>
+                            <li><a href="{{ route('locale.setting','en') }}" class="dropdown-item">  ES</a></li>
+                        </ul>
+                    </div>
+
+   
                 </li>
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <li class="nav-item">
-                        <button type='submit' class="nav-link" >Logout</button>
+                        <button type='submit' class="nav-link" ><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i> Sair</button>
                     </li>
                 </form>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownButton" data-bs-toggle="dropdown" >
+                            @if(session()->get('theme') == 'light')
+                                <i class="fa-solid fa-sun"></i>
+                            @else
+                                <i class="fa-solid fa-moon"></i>
+                            @endif
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownButton">
+                            <li><a href="{{ route('bg-theme','light') }}" class="dropdown-item"><i class="fa-solid fa-sun"></i> Light</a></li>
+                            <li><a href="{{ route('bg-theme','dark') }}" class="dropdown-item"><i class="fa-solid fa-moon"></i> Dark</a></li>
+                        </ul>
+                    </div>
+                </li>
             @endauth
         </ul>
     </div>
