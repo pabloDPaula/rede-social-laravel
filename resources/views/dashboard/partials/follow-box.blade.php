@@ -10,7 +10,7 @@
                             src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario" alt=""></a>
                 </div>
                 <div class="overflow-hidden">
-                    <a class="h6 mb-0" href="{{ route('users.show',$user    ) }}">{{ $user->name }}</a>
+                    <a class="h6 mb-0" href="{{ route('users.show',$user) }}">{{ $user->name }}</a>
                     <p class="mb-0 small text-truncate">{{ $user->followers_count }} seguidores</p>
                     <p class="mb-0 small text-truncate">{{ $user->email }}</p>
                 </div>
@@ -18,7 +18,7 @@
                     @if(!Auth::user()->follows($user))
                         <form action="{{ route('users.follow',$user->id) }}" method="post" class="ms-auto">
                             @csrf
-                            <button class="btn btn-primary-soft rounded-circle icon-md " type="submit">
+                            <button class="btn btn-primary rounded-circle" type="submit">
                                 <i class="fa-solid fa-plus"> </i>
                             </button>
                         </form>
@@ -26,7 +26,7 @@
                         <form action="{{ route('users.unfollow',$user->id) }}" method="post" class="ms-auto">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-primary-soft rounded-circle icon-md"  type="submit">
+                            <button class="btn btn-secondary rounded-circle"  type="submit">
                                 <i class="fa-solid fa-minus"> </i>
                             </button>
                         </form>

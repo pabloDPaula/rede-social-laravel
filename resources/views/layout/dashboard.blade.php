@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="col-3">
-        @include('dashboard.partials.search-bar')
+
        @include('dashboard.partials.follow-box')
     </div>
 </div>

@@ -25,12 +25,13 @@
                {{ $user->bio }}
             </p>
             <div class="d-flex justify-content-start">
-                <a href="#" class="fw-light nav-link fs-6 me-3"> <span class="fas fa-user me-1">
-                    </span> {{ $user->followers->count() }} Followers </a>
+                <button class="fw-light nav-link fs-6 me-3" data-bs-toggle="modal" data-bs-target="#followersModal"> <span class="fas fa-user me-1">
+                    </span> {{ $user->followers->count() }} seguidores </button>
+                    @include('user.partials.followers-modal')
                 <a href="#" class="fw-light nav-link fs-6 me-3"> <span class="fas fa-brain me-1">
                     </span> {{ $user->posts->count() }} posts</a>
                 <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-comment me-1">
-                    </span> {{ $user->comments->count()  }} comments</a>
+                    </span> {{ $user->comments->count()  }} comentários</a>
             </div>
             @auth
                 @if(!Auth::user()->is($user))

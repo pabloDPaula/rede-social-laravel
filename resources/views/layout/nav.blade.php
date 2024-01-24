@@ -2,6 +2,7 @@
 data-bs-theme="dark">
 <div class="container">
     <a class="navbar-brand fw-light" href="{{ route('dashboard.index') }}"><span class="fas fa-brain me-1"> </span>Ideas</a>
+    @include('dashboard.partials.search-bar')
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -18,12 +19,14 @@ data-bs-theme="dark">
             @endguest
             @auth
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeis('profile') ? 'active' : '' }}" href="{{ route('profile') }}">{{ Auth::user()->name }}</a>
+                    <a class="nav-link {{ request()->routeis('profile') ? 'active' : '' }}" href="{{ route('profile') }}"> 
+                        <img class="avatar-sm rounded-circle" width="24" height="24 "src="{{ Auth::user()->getImageURL() }}" alt="{{ Auth::user()->name}}"> <span class="text-light">Perfil</span>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownButton" data-bs-toggle="dropdown" >
-                            ES/PT
+                            {{ session()->get('locale') == 'en' ? 'ES' : 'PT' }}
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownButton">
                             <li><a href="{{ route('locale.setting','pt-BR') }}" class="dropdown-item"> PT</a></li>
@@ -36,7 +39,8 @@ data-bs-theme="dark">
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <li class="nav-item">
-                        <button type='submit' class="nav-link" ><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i> Sair</button>
+                
+                        <button type='submit' class="nav-link text-light" ><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i> Sair</button>
                     </li>
                 </form>
                 <li class="nav-item">
