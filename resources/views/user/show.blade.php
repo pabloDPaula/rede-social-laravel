@@ -14,7 +14,7 @@
         <hr>
 
         @if($posts->count() == 0)
-            <p>Nenhum post encontrado</p>
+            <p>{{ __('user.show.No posts found') }}</p>
         @else
             @foreach ($posts as $post)
                 @include('post.partials.card-post')

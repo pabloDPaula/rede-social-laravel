@@ -13,7 +13,7 @@
             {{-- @if($user->id == Auth::id()) --}}
             @can('update',$user)
                 <div>
-                    <a href="{{ route('users.edit',$user->id) }}">Editar</a>
+                    <a href="{{ route('users.edit',$user->id) }}">{{__('user.show.EditButton') }}</a>
                 </div>
             @endcan
             {{-- @endif --}}
@@ -25,13 +25,13 @@
                {{ $user->bio }}
             </p>
             <div class="d-flex justify-content-start">
-                <button class="fw-light nav-link fs-6 me-3" data-bs-toggle="modal" data-bs-target="#followersModal"> <span class="fas fa-user me-1">
-                    </span> {{ $user->followers->count() }} seguidores </button>
+                <a class="btn fw-light nav-link fs-6 me-3" data-bs-toggle="modal" data-bs-target="#followersModal"> <span class="fas fa-user me-1">
+                    </span> {{ $user->followers->count() }} {{__('user.show.followers')}} </a>
                     @include('user.partials.followers-modal')
                 <a href="#" class="fw-light nav-link fs-6 me-3"> <span class="fas fa-brain me-1">
-                    </span> {{ $user->posts->count() }} posts</a>
+                    </span> {{ $user->posts->count() }}  {{__('user.show.posts')}}</a>
                 <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-comment me-1">
-                    </span> {{ $user->comments->count()  }} comentários</a>
+                    </span> {{ $user->comments->count()  }}  {{__('user.show.comments')}}</a>
             </div>
             @auth
                 @if(!Auth::user()->is($user))

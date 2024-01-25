@@ -1,6 +1,6 @@
 <div class="card mt-3">
     <div class="card-header pb-0 border-0">
-        <h5 class="">Quem seguir</h5>
+        <h5 class="">{{ __('follow-box.Who to follow') }}</h5>
     </div>
     <div class="card-body">
         @foreach ($topUsers as $user)
@@ -35,7 +35,7 @@
             </div>
         @endforeach
         <div class="d-grid mt-3">
-            <a class="btn btn-sm btn-primary-soft" href="#!">Mostrar mais</a>
+            <a class="btn btn-sm btn-primary-soft" href="#!">{{ __('follow-box.Show more') }}</a>
         </div>
     </div>
 </div>

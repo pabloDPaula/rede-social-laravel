@@ -7,7 +7,7 @@
         @enderror 
     </div>
     <div>
-        <button class="btn btn-primary btn-sm" type='submit'>Comentar </button>
+        <button class="btn btn-primary btn-sm" type='submit'>{{__('comments.commentButton')}} </button>
     </div>
     <hr>
 </form>
@@ -30,12 +30,12 @@
                     <form action="{{ route('comments.delete',$comment->id) }}" method="post">
                         @method('delete')
                         @csrf
-                        <button class="btn btn-link">Excluir</button>
+                        <button class="btn btn-link">{{ __('comments.deleteButton')}}</button>
                     </form>
                 @endif
             </div>
         </div>
     </div>
 @empty
-    <p class="text-center">Nenhum comentário encontrado, seja o primeiro</p>
+    <p class="text-center">{{ __('comments.No comments found, be the first') }}</p>
 @endforelse

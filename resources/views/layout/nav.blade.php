@@ -11,16 +11,16 @@ data-bs-theme="dark">
         <ul class="navbar-nav">
             @guest
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeis('login') ? 'active' : '' }}" href="{{ route('login') }}">Logar</a>
+                    <a class="nav-link {{ request()->routeis('login') ? 'active' : '' }}" href="{{ route('login') }}">{{ __('nav.login') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeis('register') ? 'active' : '' }}" href="{{ route('register') }}">Registrar</a>
+                    <a class="nav-link {{ request()->routeis('register') ? 'active' : '' }}" href="{{ route('register') }}">{{ __('nav.register') }}</a>
                 </li>
             @endguest
             @auth
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeis('profile') ? 'active' : '' }}" href="{{ route('profile') }}"> 
-                        <img class="avatar-sm rounded-circle" width="24" height="24 "src="{{ Auth::user()->getImageURL() }}" alt="{{ Auth::user()->name}}"> <span class="text-light">Perfil</span>
+                        <img class="avatar-sm rounded-circle" width="24" height="24 "src="{{ Auth::user()->getImageURL() }}" alt="{{ Auth::user()->name}}"> <span class="text-light">{{__('nav.profile')}}</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -40,7 +40,7 @@ data-bs-theme="dark">
                     @csrf
                     <li class="nav-item">
                 
-                        <button type='submit' class="nav-link text-light" ><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i> Sair</button>
+                        <button type='submit' class="nav-link text-light" ><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i> {{__('nav.logout')}}</button>
                     </li>
                 </form>
                 <li class="nav-item">

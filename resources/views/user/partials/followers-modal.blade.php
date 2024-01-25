@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="followersModalLabel">Seguidores</h1>
+          <h1 class="modal-title fs-5" id="followersModalLabel">{{  __('user.followersModal.follow')}}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -21,7 +21,7 @@
                                 <form action="{{ route('users.follow',$user->id) }}" method="post">
                                     @csrf
                                     <button class="btn btn-primary" type="submit">
-                                        Seguir
+                                        {{  __('user.followersModal.follow')}}
                                     </button>
                                 </form> 
                             @else
@@ -29,7 +29,7 @@
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-secondary"  type="submit">
-                                        Remover
+                                        {{  __('user.followersModal.remove')}}
                                     </button>
                                 </form>
                             @endif
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             @empty
-                <p>Você não possui nenhum seguidor.</p>
+                <p> {{  __("user.followersModal.You don't have any followers")}}</p>
             @endforelse
         </div>
       </div>
