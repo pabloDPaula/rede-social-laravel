@@ -18,14 +18,14 @@
                     <div class="d-flex align-items-center">
                         @if(Auth::user()->isNot($follower))
                             @if(!Auth::user()->follows($follower))
-                                <form action="{{ route('users.follow',$user->id) }}" method="post">
+                                <form action="{{ route('users.follow',$follower->id) }}" method="post">
                                     @csrf
                                     <button class="btn btn-primary" type="submit">
                                         {{  __('user.followersModal.follow')}}
                                     </button>
                                 </form> 
                             @else
-                                <form action="{{ route('users.unfollow',$user->id) }}" method="post">
+                                <form action="{{ route('users.unfollow',$follower->id) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-secondary"  type="submit">

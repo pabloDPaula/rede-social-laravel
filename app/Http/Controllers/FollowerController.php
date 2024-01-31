@@ -14,7 +14,7 @@ class FollowerController extends Controller
         $follower->followings()->attach($user->id);
 
         // Redireciona para a página em que estava mas com uma mensagem guardada no session
-        return redirect()->back()->with('sucess', 'Seguindo com sucesso');
+        return redirect()->back()->with('sucess', 'você está seguindo esse usuário.');
     }
 
     public function unfollow(User $user)
@@ -22,6 +22,6 @@ class FollowerController extends Controller
         $follower = Auth::user();
         $follower->followings()->detach($user->id);
 
-        return redirect()->back()->with('sucess', 'Seguindo com sucesso');
+        return redirect()->back()->with('sucess', 'Você não está mais seguindo esse usuário.');
     }
 }
