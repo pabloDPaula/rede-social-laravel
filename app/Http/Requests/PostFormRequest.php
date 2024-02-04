@@ -24,7 +24,8 @@ class PostFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required|max:255,|min:3'
+            'content' => 'required|max:255,|min:3',
+            'media' => 'file|mimes:png,jpg,jpeg,gif,webp|max:20000'
         ];
     }
 
@@ -34,6 +35,8 @@ class PostFormRequest extends FormRequest
             'content.required' => 'O campo de mensagem é obrigatório',
             'content.max' => 'O máximo é :max caracteres',
             'content.min' => 'O mínimo é :min caracteres',
+            'media.mimes' => 'O tipo de arquivo escolhido é inválido',
+            'media.size' => 'O arquivo deve ter 20 MBs'
 
         ];
     }

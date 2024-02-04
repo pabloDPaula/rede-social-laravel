@@ -12,6 +12,21 @@ class PostController extends Controller
     public function store(PostFormRequest $request)
     {
         $request['user_id'] = Auth()->id();
+        if ($request->has('media_path')) {
+            $imagesPath = [];
+            foreach ($request->file('media_path') as $media) {
+
+                $image = $media->getClientOriginalName();
+                $imageName = pathinfo($image, PATHINFO_FILENAME);
+                $currentData = strtotime(date('Y-m-d H:i:s'));
+                $newImageName = $imageName . $currentData;
+
+                $path = $media->storeAs('post/media', $newImageName, 'public');
+                $imagesPath[] = $path;
+            }
+            $request['media'] = $imagesPath;
+        }
+
         Post::create($request->all());
         return redirect()->route('dashboard.index')->with('sucess', 'Post criado com sucesso');
     }

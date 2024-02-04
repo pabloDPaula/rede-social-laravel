@@ -43,9 +43,30 @@
                             </div>
                         </div>
                     </form>
+                    @if($post->media)
+                        <div class='row'> 
+                            @foreach ($post->media as $image)
+                                <div class='col-4'>
+                                    <form method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <img width='100%' height='auto' src="{{ $post->getImageURL($image) }}" >
+                                        <span class='remove-image' style='margin: 10px -40px; position: absolute;'><button class='btn btn-danger'>X</button></span>
+                                    </form>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
                 @endcan
             @else
-                {{ $post->content }}
+                <div>{{ $post->content }}</div>
+                @if($post->media)
+                    <div> 
+                        @foreach ($post->media as $image)
+                            <img style="width:150px; height: auto;" src="{{ $post->getImageURL($image) }}" >
+                        @endforeach
+                    </div>
+                @endif
             @endif
         </p>
         <div class="d-flex justify-content-between">

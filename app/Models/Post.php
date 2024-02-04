@@ -14,7 +14,12 @@ class Post extends Model
     protected $fillable = [
         'content',
         'likes',
-        'user_id'
+        'user_id',
+        'media'
+    ];
+
+    protected $casts = [
+        'media' => 'array'
     ];
 
     protected $withCount = ['likes'];
@@ -38,5 +43,10 @@ class Post extends Model
     public function scopeSearch($query, $search = '')
     {
         $query->where('content', 'like', "%" . $search . "%");
+    }
+
+    public function getImageURL($media)
+    {
+        return url("storage/$media");
     }
 }
