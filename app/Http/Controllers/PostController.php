@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostFormRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
+use File;
 
 class PostController extends Controller
 {
@@ -13,18 +17,16 @@ class PostController extends Controller
     {
         $request['user_id'] = Auth()->id();
         if ($request->has('media_path')) {
-            $imagesPath = [];
+            $images = [];
             foreach ($request->file('media_path') as $media) {
 
                 $image = $media->getClientOriginalName();
-                $imageName = pathinfo($image, PATHINFO_FILENAME);
-                $currentData = strtotime(date('Y-m-d H:i:s'));
-                $newImageName = $imageName . $currentData;
+                $newImageName = time() . $image;
 
-                $path = $media->storeAs('post/media', $newImageName, 'public');
-                $imagesPath[] = $path;
+                $media->storeAs('post/media', $newImageName, 'public');
+                $images[] = $newImageName;
             }
-            $request['media'] = $imagesPath;
+            $request['media'] = $images;
         }
 
         Post::create($request->all());
@@ -53,10 +55,39 @@ class PostController extends Controller
     public function update(Post $post, PostFormRequest $request)
     {
         $post->content = $request->content;
+
+        if ($request->has('media_path')) {
+            $images = [];
+            foreach ($request->file('media_path') as $media) {
+
+                $image = $media->getClientOriginalName();
+                $newImageName = time() . $image;
+
+                $media->storeAs('post/media', $newImageName, 'public');
+                $images[] = $newImageName;
+            }
+            $media = $post->media->concat($images);
+            $post->media = $media;
+        }
+
+
         $post->save();
 
-        return view('post.show')
-            ->with('post', $post)
+        return redirect()->route('posts.show', $post->id)
             ->with('sucess', 'Post atualizado com sucesso');
+    }
+
+    public function destroyPhoto(Post $post, string $image)
+    {
+        $imagePath = "post/media/$image";
+
+        $media = $post->media->reject(function ($value) use ($image) {
+            return $value == $image;
+        });
+        $post->media = $media;
+        $post->save();
+        Storage::disk('public')->delete($imagePath);
+
+        return redirect()->back()->with('sucess', 'Deletado com sucesso');
     }
 }

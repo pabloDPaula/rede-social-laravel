@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/posts/{post}', 'destroy')->name('posts.delete');
         Route::get('/posts/{post}/edit', 'edit')->name('posts.edit');
         Route::put('/posts/{post}', 'update')->name('posts.update');
+        Route::delete('/posts/{post}/{image}', 'destroyPhoto')->name('media.delete');
     });
 
     Route::controller(CommentController::class)->group(function () {

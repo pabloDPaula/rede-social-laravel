@@ -28,7 +28,7 @@
         <p class="fs-6 fw-light text-muted">
             @if($editing ?? false )
                 @can('update',$post)
-                    <form action="{{ route('posts.update',$post->id) }}" method="post">
+                    <form action="{{ route('posts.update',$post->id) }}" enctype="multipart/form-data" method="post">
                         @csrf
                         @method('put')
                         <div class="row">
@@ -38,16 +38,23 @@
                                     <div class="mt-3 d-block invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="">
-                                <button type='submit' class="btn btn-success"> Atualizar </button>
+                            <div class="row">
+                                <div class="col-6"> <input class="btn btn-success form-control" type="file" multiple id='media_path' name="media_path[]"></div>
+                                <div class="col-6"> <button type='submit' class="btn btn-success"> Atualizar </button></div>
+                            </div>
+                            <div class="row">
+                                @error('media_path')
+                                    <div class="mt-3 d-block invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </form>
+                    <div class='mt-3' id="preview"></div> 
                     @if($post->media)
-                        <div class='row'> 
+                        <div class='row mt-4'> 
                             @foreach ($post->media as $image)
                                 <div class='col-4'>
-                                    <form method="post">
+                                    <form method="post" action="{{ route('media.delete',[$post->id, $image]) }}">
                                         @csrf
                                         @method('delete')
                                         <img width='100%' height='auto' src="{{ $post->getImageURL($image) }}" >

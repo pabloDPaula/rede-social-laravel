@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class PostFormRequest extends FormRequest
 {
@@ -24,8 +25,8 @@ class PostFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required|max:255,|min:3',
-            'media' => 'file|mimes:png,jpg,jpeg,gif,webp|max:20000'
+            'content' => 'required|max:255|min:3',
+            // 'media_path' => 'mimes:png,jpg,jpeg'
         ];
     }
 
@@ -35,9 +36,7 @@ class PostFormRequest extends FormRequest
             'content.required' => 'O campo de mensagem é obrigatório',
             'content.max' => 'O máximo é :max caracteres',
             'content.min' => 'O mínimo é :min caracteres',
-            'media.mimes' => 'O tipo de arquivo escolhido é inválido',
-            'media.size' => 'O arquivo deve ter 20 MBs'
-
+            // 'media_path.mimes' => 'O tipo de arquivo escolhido é inválido. Tipos válidos: png, jpg, jpeg, gif, webp'
         ];
     }
 }

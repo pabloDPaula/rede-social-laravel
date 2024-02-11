@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,7 +20,7 @@ class Post extends Model
     ];
 
     protected $casts = [
-        'media' => 'array'
+        'media' => AsCollection::class
     ];
 
     protected $withCount = ['likes'];
@@ -47,6 +48,6 @@ class Post extends Model
 
     public function getImageURL($media)
     {
-        return url("storage/$media");
+        return url("storage/post/media/$media");
     }
 }
