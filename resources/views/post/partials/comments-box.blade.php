@@ -1,7 +1,7 @@
 <form action="{{ route('posts.comments.store',$post->id) }}" method="post">
     @csrf
     <div class="mb-3">
-        <textarea class="fs-6 form-control" name='content' rows="1"></textarea>
+        <textarea class="fs-6 form-control" required name='content' rows="1"></textarea>
         @error('content')
             <div class="mt-3 d-block invalid-feedback">{{ $message }}</div>
         @enderror 

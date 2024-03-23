@@ -65,5 +65,9 @@ Route::controller(UserController::class)->group(function () {
 
 Route::get('/sistema', [AdminAuthController::class, 'login'])->name('admin.login');
 Route::post('/sistema', [AdminAuthController::class, 'authenticate']);
-Route::get('/sistema/dashboard', [AdminDashboardController::class, 'index'])->middleware('admin')->name('admin.dashboard');
-Route::delete('/logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
+
+Route::middleware('admin')->group(function () {
+    Route::get('/sistema/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/sistema/profile', [AdminDashboardController::class, 'edit'])->name('admin.profile');
+    Route::delete('/logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
+});
