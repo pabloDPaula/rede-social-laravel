@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
-<body data-bs-theme="{{ session()->has('theme') ? session()->get('theme') : 'light' }}">
+<body >
     @include('layout.nav')
     <div class="container py-4">
         @yield('content')

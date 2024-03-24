@@ -9,10 +9,10 @@
         <ul class="navbar-nav">
             @guest
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeis('login') ? 'active' : '' }}" href="{{ route('login') }}">{{ __('nav.login') }}</a>
+                    <a class="nav-link " href="{{ route('login') }}"><button type="button" class="btn btn-outline-light {{ request()->routeis('login') ? 'active' : '' }}">{{ __('nav.login') }}</button></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeis('register') ? 'active' : '' }}" href="{{ route('register') }}">{{ __('nav.register') }}</a>
+                    <a class="nav-link " href="{{ route('register') }}"><button type="button" class="btn btn-outline-light  {{ request()->routeis('register') ? 'active' : '' }}">{{ __('nav.register') }}</button></a>
                 </li>
             @endguest
             @auth
@@ -25,11 +25,11 @@
                 <li class="nav-item">
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownButton" data-bs-toggle="dropdown" >
-                            {{ session()->get('locale') == 'en' ? 'ES' : 'PT' }}
+                            <span>{{ session()->get('locale') == 'en' ? 'ES' : 'PT' }}</span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownButton">
-                            <li><a href="{{ route('locale.setting','pt-BR') }}" class="dropdown-item"> PT</a></li>
-                            <li><a href="{{ route('locale.setting','en') }}" class="dropdown-item">  ES</a></li>
+                            <li><a href="{{ route('locale.setting','pt-BR') }}" class="dropdown-item">PT</a></li>
+                            <li><a href="{{ route('locale.setting','en') }}" class="dropdown-item">ES</a></li>
                         </ul>
                     </div>
 
@@ -41,21 +41,6 @@
                         <button type='submit' class="nav-link" ><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i><p class='d-inline ms-1'>{{__('nav.logout')}}</p></button>
                     </li>
                 </form>
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownButton" data-bs-toggle="dropdown" >
-                            @if(session()->get('theme') == 'light')
-                                <i class="fa-solid fa-sun"></i>
-                            @else
-                                <i class="fa-solid fa-moon"></i>
-                            @endif
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownButton">
-                            <li><a href="{{ route('bg-theme','light') }}" class="dropdown-item"><i class="fa-solid fa-sun"></i> Light</a></li>
-                            <li><a href="{{ route('bg-theme','dark') }}" class="dropdown-item"><i class="fa-solid fa-moon"></i> Dark</a></li>
-                        </ul>
-                    </div>
-                </li>
             @endauth
         </ul>
     </div>

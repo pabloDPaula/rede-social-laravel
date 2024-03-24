@@ -1,30 +1,30 @@
-   <div class="card overflow-hidden">
+   <div class="card timeline-navigation">
             <div class="card-body pt-3">
-                <ul class="nav nav-link-secondary flex-column fw-bold gap-2">
+                <ul class="nav flex-column gap-2">
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('dashboard.index') ? 'text-white bg-primary rounded' : '' }}" href="{{ route('dashboard.index') }}">
-                            <span>{{ __('dashboard.left-sidebar.start') }}</span></a>
+                        <a class="nav-link {{ Route::is('dashboard.index') ? 'active' : '' }}" href="{{ route('dashboard.index') }}">
+                            <span><i class="fa-solid fa-house me-2"></i>{{ __('dashboard.left-sidebar.start') }}</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span>{{ __('dashboard.left-sidebar.to-explore') }}</span></a>
+                        <a class="nav-link {{ Route::is('profile') ? 'active' : '' }}" href="{{ route('profile') }}">
+                            <span><i class="fa-solid fa-user"></i> Perfil</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('feed') ? 'text-white bg-primary rounded' : '' }}" href="{{ route('feed') }}">
-                            <span>{{ __('dashboard.left-sidebar.feed') }}</span>
+                        <a class="nav-link {{ Route::is('feed') ? 'active' : '' }}" href="{{ route('feed') }}">
+                            <span><i class="fa-solid fa-user-group"></i> {{ __('dashboard.left-sidebar.feed') }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <span>{{ __('dashboard.left-sidebar.terms') }}</span></a>
+                            <span><i class="fa-solid fa-people-group"></i> Grupo</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <span>{{ __('dashboard.left-sidebar.support') }}</span></a>
+                            <span><i class="fa-solid fa-calendar-days"></i> Evento</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <span>{{ __('dashboard.left-sidebar.settings') }}</span></a>
+                            <span><i class="fa-solid fa-store"></i> Marketplace</span></a>
                     </li>
                 </ul>
             </div>

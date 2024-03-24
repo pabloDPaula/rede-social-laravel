@@ -1,3 +1,45 @@
 #navbar-principal {
-    background-color: #20c997 !important;
+    background-color: #005e9e !important;
+}
+
+#navbarNav .nav-link :where(button:hover, .active) {
+    color: #fff !important;
+    background-color: #ff7856 !important;
+    border-color: #ff7856 !important;
+}
+
+.dropdown-toggle::after,
+.fa-arrow-right-from-bracket:before,
+.fa-sign-out:before {
+    color: #fff !important;
+}
+
+#navbar-principal :where(.navbar-brand, p, span) {
+    color: #fff !important;
+}
+
+.button {
+    background-color: #005e9e !important;
+    border-color: #005e9e !important;
+}
+
+.button:hover {
+    background-color: #005085 !important;
+    border-color: #005085 !important;
+}
+
+.timeline-navigation {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.timeline-navigation .active {
+    border-left: 4px solid #005e9e;
+    background-color: #eee;
+    border-radius: 0px 5px 5px 0px;
+}
+
+.timeline-navigation span {
+    color: black;
+    font-weight: 500;
+    font-size: 15px
 }

@@ -54,7 +54,7 @@ class AuthController extends Controller
 
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        return view('auth.login');
+        return redirect()->route('login');
     }
 
     public function authenticate(Request $request)
@@ -73,8 +73,7 @@ class AuthController extends Controller
             ],
             $messages
         );
-
-        if (auth()->attempt($validated)) {
+        if (auth()->attempt($validated, $request->remember_token)) {
             $request->session()->regenerate();
 
             return redirect()->route('dashboard.index')->with('sucess', 'Conta logada com sucesso');
